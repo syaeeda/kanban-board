@@ -8,14 +8,16 @@
 <body>
 	<header>
 		<h1>Kanban Board</h1>
-		<h2>Tasks: <span id="task-counter">0</span></h2>
-
-		<select>
-			<option value="All">All</option>
-			<option value="High">High</option>
-			<option value="Medium">Medium</option>
-			<option value="Low">Low</option>	
-		</select> 
+		<div class="header-tools">
+			<span id="task-counter">Tasks: 0</span>
+			<label for="priority-filter">Filter by Priority:</label>
+			<select id="priority-filter">
+				<option value="All">All</option>
+				<option value="High">High</option>
+				<option value="Medium">Medium</option>
+				<option value="Low">Low</option>	
+			</select> 
+		</div>
 	</header>
 
 	<main class="board">
@@ -41,26 +43,26 @@
 	<div id="task-modal" class="modal">
 		<div class="modal-content">
 			<h3>Add New Task</h3>
-		<input type="text" id="task-title" placeholder="Task Title">
-		<textarea id=task-desc placeholder="Task Description"></textarea>
+			<input type="text" id="task-title" placeholder="Task Title">
+			<textarea id=task-desc placeholder="Task Description"></textarea>
 
-		<label>Priority: </label>
-		<select id="task-priority">
-			<option value="High">High</option>
-			<option value="Medium">Medium</option>
-			<option value="Low">Low</option>	
-		</select>
+			<label>Priority: </label>
+			<select id="task-priority">
+				<option value="High">High</option>
+				<option value="Medium">Medium</option>
+				<option value="Low">Low</option>	
+			</select>
 
-		<label>Due Date: </label>
-		<input type="date" id="task-date">
+			<label>Due Date: </label>
+			<input type="date" id="task-date">
 
-		<div class="add-task-actions">
-			<button id="save-task">Save</button>
-			<button id="cancel-task">Cancel</button>
+			<div class="add-task-actions">
+				<button id="save-task">Save</button>
+				<button id="cancel-task">Cancel</button>
+			</div>
 		</div>
 	</div>
 
-
-
+	<script src="taskmanager.js"></script>
 </body>
 </html>
