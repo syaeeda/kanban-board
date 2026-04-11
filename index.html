@@ -10,10 +10,10 @@
 		<h2>Tasks: <span id="task-counter">0</span></h2>
 
 		<select>
-			<option value="All"></option>
-			<option value="High"></option>
-			<option value="Medium"></option>
-			<option value="Low"></option>	
+			<option value="All">All</option>
+			<option value="High">High</option>
+			<option value="Medium">Medium</option>
+			<option value="Low">Low</option>	
 		</select> 
 	</header>
 
@@ -36,5 +36,30 @@
 			<button class="add-task-btn">Add Task</button>
 		</section>
 	</main>
+
+	<div id="task-modal" class="modal">
+		<div class="modal-content">
+			<h3>Add New Task</h3>
+		<input type="text" id="task-title" placeholder="Task Title">
+		<textarea id=task-desc placeholder="Task Description"></textarea>
+
+		<label>Priority: </label>
+		<select id="task-priority">
+			<option value="High">High</option>
+			<option value="Medium">Medium</option>
+			<option value="Low">Low</option>	
+		</select>
+
+		<label>Due Date: </label>
+		<input type="date" id="task-date">
+
+		<div class="add-task-actions">
+			<button id="save-task">Save</button>
+			<button id="cancel-task">Cancel</button>
+		</div>
+	</div>
+
+
+
 </body>
 </html>
