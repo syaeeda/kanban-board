@@ -72,5 +72,9 @@ function updateTask(taskId, updatedData) {
 	card.querySelector('badge').textContent = updatedData.priority;
 
 	document.getElementById('task-modal').style.display = 'none';
-	
+}
+
+function updateTaskCounter() {
+	const count = document.querySelectorAll('.task-card').length;
+	document.getElementById('task-counter').textContent = 'Tasks: ${count}';
 }
