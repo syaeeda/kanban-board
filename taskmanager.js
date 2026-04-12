@@ -32,25 +32,34 @@ function createTaskCard(taskObj) {
 	li.appendChild(deleteBtn);
 
 	return li;
+}
 
 function addTask (columnId, taskObj) {
-		const columnList = document.querySelector('#${columnId} .task-list');
-		const card = createTaskCard(taskObj);
-	
-		columnList.appendChild(card);
-		updateTaskCounter();
-	}
+	const columnList = document.querySelector('#${columnId} .task-list');
+	const card = createTaskCard(taskObj);
+
+	columnList.appendChild(card);
+	updateTaskCounter();
+}
 
 function deleteTask(taskId) {
-		const card = document.querySelector('[data-id="${taskId}"]');
+	const card = document.querySelector('[data-id="${taskId}"]');
 
-		card.classList.add('fade-out');
+	card.classList.add('fade-out');
 
-		card.addEventListener('animationend', () => {
-			card.remove();
-			updateTaskCounter();
-		})
-	}
+	card.addEventListener('animationend', () => {
+		card.remove();
+		updateTaskCounter();
+	})
+}
 
-	function 
+function editTask(taskId) {
+	const card = document.querySelector('[data-id="${taskId}"]');
+
+	document.getElementById('task-title').value = card.querySelector('h4').textContent;
+	document.getElementById('task-desc').value = card.querySelector('p').textContent;
+
+	document.getElementById('task-modal').style.display = 'block';
+
+	document.getElementById('task-modal').setAttribute('data-editing-id', taskId);
 }
