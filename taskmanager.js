@@ -40,4 +40,15 @@ function createTaskCard(taskObj) {
 		columnList.appendChild(card);
 		updateTaskCounter();
 	}
+
+	deleteTask(taskId) {
+		const card = document.querySelector('[data-id="${taskId}"]');
+
+		card.classList.add('fade-out');
+
+		card.addEventListener('transitioned', () => {
+			card.remove();
+			updateTaskCounter();
+		})
+	}
 }
