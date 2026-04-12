@@ -32,4 +32,12 @@ function createTaskCard(taskObj) {
 	li.appendChild(deleteBtn);
 
 	return li;
+
+	addTask(columnId, taskObj) {
+		const columnList = document.querySelector('#${columnId} .task-list');
+		const card = createTaskCard(taskObj);
+	
+		columnList.appendChild(card);
+		updateTaskCounter();
+	}
 }
