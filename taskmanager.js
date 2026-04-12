@@ -59,7 +59,13 @@ function createTaskCard(taskObj) {
 		title.replaceWith(input);
 		input.focus();
 
-		const saveInline = 
+		const saveInline = () => {
+			title.textContent = input.value;
+			input.replaceWith(title);
+		};
+
+		input.addEventListener('keydown', (e) => { if (e.key === 'Enter') saveInline(); });
+		input.addEventListener('blur', saveInline);		
 	});
 }
 
