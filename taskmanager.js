@@ -199,8 +199,18 @@ document.getElementById('save-task').addEventListener('click', () => {
     modal.style.display = 'none';
     document.getElementById('task-title').value = '';
     document.getElementById('task-desc').value = '';
+    document.getElementById('task-priority').value = 'High'; 
+    document.getElementById('task-date').value = '';
+
+    modal.removeAttribute('data-editing-id');
 });
 
 document.getElementById('cancel-task').addEventListener('click', () => {
-    document.getElementById('task-modal').style.display = 'none';
+    const modal = document.getElementById('task-modal');
+    modal.style.display = 'none';
+	
+	document.getElementById('task-title').value = '';
+    document.getElementById('task-desc').value = '';
+    document.getElementById('task-priority').value = 'High';
+    document.getElementById('task-date').value = '';
 });
