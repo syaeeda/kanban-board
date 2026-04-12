@@ -165,3 +165,38 @@ document.querySelectorAll('.add-task-btn').forEach(btn => {
         modal.removeAttribute('data-editing-id');
     });
 });
+
+document.getElementById('save-task').addEventListener('click', () => {
+    const modal = document.getElementById('task-modal');
+    const title = document.getElementById('task-title').value;
+    const desc = document.getElementById('task-desc').value;
+    const priority = document.getElementById('task-priority').value;
+    const date = document.getElementById('task-date').value;
+
+    if (!title) return alert("Please enter a title");
+
+    const taskData = {
+        id: Date.now().toString(),
+        title: title,
+        description: desc,
+        priority: priority,
+        date: date
+    };
+
+    const editingId = modal.getAttribute('data-editing-id');
+
+    if (editingId) {
+        updateTask(editingId, taskData);
+    } else {
+        const columnId = modal.getAttribute('data-column-id');
+        addTask(columnId, taskData);
+    }
+
+    modal.style.display = 'none';
+    document.getElementById('task-title').value = '';
+    document.getElementById('task-desc').value = '';
+});
+
+document.getElementById('cancel-task').addEventListener('click', () => {
+    document.getElementById('task-modal').style.display = 'none';
+});
