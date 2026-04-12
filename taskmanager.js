@@ -67,6 +67,20 @@ function createTaskCard(taskObj) {
 		input.addEventListener('keydown', (e) => { if (e.key === 'Enter') saveInline(); });
 		input.addEventListener('blur', saveInline);		
 	});
+
+	const filterDropdown = document.getElementById('priority-filter');
+
+	filterDropdown.addEventListener('change', () => {
+		const selected = filterDropdown.value;
+		const allCards = document.querySelectorAll('.task-card');
+		
+		allCards.forEach(card => {
+			const cardPriority = card.querySelector('.badge').textContent;
+			const shouldHide = selected !== 'All' && cardPriority !== selected;
+			card.classList.toggle('is-hidden', shouldHide);
+		});
+	});
+
 }
 
 function addTask (columnId, taskObj) {
