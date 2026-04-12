@@ -58,11 +58,11 @@ const columns = document.querySelectorAll('.task-list');
 columns.forEach(list => {
 	list.addEventListener('click', (event) => {
 		const target = event.target;
+		const action = target.getAttribute('data-action');
 		const card = target.closest('.task-card');
 		if (!card || !action) return;
 
 		const taskId = card.getAttribute('data-id');
-		const action = target.getAttribute('data-action');
 
 		if (action === 'edit') {
 			editTask(taskId);
