@@ -51,6 +51,16 @@ function createTaskCard(taskObj) {
 			}
 		});
 	});
+
+	title.addEventListener('dblclick', () => {
+		const input = document.createElement('input');
+		input.value = title.textContent;
+
+		title.replaceWith(input);
+		input.focus();
+
+		const saveInline = 
+	});
 }
 
 function addTask (columnId, taskObj) {
