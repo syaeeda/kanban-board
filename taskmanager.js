@@ -58,8 +58,10 @@ const columns = document.querySelectorAll('.task-list');
 columns.forEach(list => {
 	list.addEventListener('click', (event) => {
 		const target = event.target;
-		const action = target.getAttribute('data-action');
 		const card = target.closest('.task-card');
+
+		const action = target.getAttribute('data-action');
+
 		if (!card || !action) return;
 
 		const taskId = card.getAttribute('data-id');
@@ -114,12 +116,14 @@ function addTask (columnId, taskObj) {
 function deleteTask(taskId) {
 	const card = document.querySelector('[data-id="' + taskId + '"]');
 
-	card.classList.add('fade-out');
+	if (card) {
+		card.classList.add('fade-out'); 
 
-	card.addEventListener('animationend', () => {
-		card.remove();
-		updateTaskCounter();
-	})
+        card.addEventListener('animationend', () => {
+            card.remove();
+            updateTaskCounter(); 
+        });
+    }
 }
 
 function editTask(taskId) {
