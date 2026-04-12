@@ -63,3 +63,14 @@ function editTask(taskId) {
 
 	document.getElementById('task-modal').setAttribute('data-editing-id', taskId);
 }
+
+function updateTask(taskId, updatedData) {
+	const card = document.querySelector('[data-id="${taskId}"]');
+
+	card.querySelector('h4').textContent = updatedData.title;
+	card.querySelector('p').textContent = updatedData.description;
+	card.querySelector('badge').textContent = updatedData.priority;
+
+	document.getElementById('task-modal').style.display = 'none';
+	
+}
