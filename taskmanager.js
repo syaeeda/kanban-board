@@ -33,7 +33,7 @@ function createTaskCard(taskObj) {
 
 	return li;
 
-	addTask(columnId, taskObj) {
+function addTask (columnId, taskObj) {
 		const columnList = document.querySelector('#${columnId} .task-list');
 		const card = createTaskCard(taskObj);
 	
@@ -41,14 +41,16 @@ function createTaskCard(taskObj) {
 		updateTaskCounter();
 	}
 
-	deleteTask(taskId) {
+function deleteTask(taskId) {
 		const card = document.querySelector('[data-id="${taskId}"]');
 
 		card.classList.add('fade-out');
 
-		card.addEventListener('transitioned', () => {
+		card.addEventListener('animationend', () => {
 			card.remove();
 			updateTaskCounter();
 		})
 	}
+
+	function 
 }
