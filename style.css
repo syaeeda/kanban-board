@@ -1,5 +1,5 @@
 .modal {
-	/*display: none;*/
+	display: none;
 	background-color: #7f7f7f;
 	position: fixed;
 	z-index: 100;
@@ -39,4 +39,8 @@
 	margin: 10% auto;
 	padding: 20px;
 	width: 400px;
+}
+
+.fade-out {
+	animation: fadeEffct 0.5s forwards;
 }
