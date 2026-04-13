@@ -2,7 +2,7 @@ function createTaskCard(taskObj) {
 	const li = document.createElement('li');
 	li.setAttribute('data-id', taskObj.id);
 	li.classList.add('task-card');
-
+	
 	const title = document.createElement('h4');
 	title.textContent = taskObj.title;
 
@@ -131,9 +131,11 @@ function editTask(taskId) {
 
 	const currentTitle = card.querySelector('h4').textContent;
     const currentDesc = card.querySelector('p').textContent;
+    const currentPrio = card.querySelector('.badge').textContent;
 
     document.getElementById('task-title').value = currentTitle;
     document.getElementById('task-desc').value = currentDesc;
+    document.getElementById('task-priority').value = currentPrio;
 
     const modal = document.getElementById('task-modal');
     modal.style.display = 'block';
@@ -161,7 +163,7 @@ function updateTaskCounter() {
 
 document.querySelectorAll('.add-task-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-        const columnId = btn.parentElement.id;
+        const columnId = btn.closest('.column').id;
         const modal = document.getElementById('task-modal');
         
         modal.style.display = 'block';
@@ -214,3 +216,4 @@ document.getElementById('cancel-task').addEventListener('click', () => {
     document.getElementById('task-priority').value = 'High';
     document.getElementById('task-date').value = '';
 });
+
