@@ -3,6 +3,16 @@ function createTaskCard(taskObj) {
 	li.setAttribute('data-id', taskObj.id);
 	li.classList.add('task-card');
 	
+	li.setAttribute('draggable', 'true');
+
+	li.addEventListener('dragstart', () => {
+		li.classList.add('dragging');
+	});
+
+	li.addEventListener('dragend', () => {
+		li.classList.remove('dragging');
+	});
+
 	const title = document.createElement('h4');
 	title.textContent = taskObj.title;
 
@@ -133,9 +143,13 @@ function editTask(taskId) {
     const currentDesc = card.querySelector('p').textContent;
     const currentPrio = card.querySelector('.badge').textContent;
 
+    const currentDateText = card.querySelector('small').textContent;
+    const currentDate = currentDateText.replace('Due: ', '');
+
     document.getElementById('task-title').value = currentTitle;
     document.getElementById('task-desc').value = currentDesc;
     document.getElementById('task-priority').value = currentPrio;
+    document.getElementById('task-date').value = currentDate;
 
     const modal = document.getElementById('task-modal');
     modal.style.display = 'block';
@@ -152,6 +166,8 @@ function updateTask(taskId, updatedData) {
 	const badge = card.querySelector('.badge');
     badge.textContent = updatedData.priority;
     badge.className = 'badge ' + updatedData.priority.toLowerCase();
+
+    card.querySelector('small').textContent = 'Due: ' + updatedData.date;
 
     document.getElementById('task-modal').style.display = 'none';
 }
@@ -217,3 +233,48 @@ document.getElementById('cancel-task').addEventListener('click', () => {
     document.getElementById('task-date').value = '';
 });
 
+const dragColumns = document.querySelectorAll('.column');
+
+dragColumns.forEach(column => {
+    column.addEventListener('dragover', e => {
+        e.preventDefault(); 
+        
+        const list = column.querySelector('.task-list');
+        const afterElement = getDragAfterElement(list, e.clientY);
+        const draggable = document.querySelector('.dragging');
+        
+        if (draggable) {
+            if (afterElement == null) {
+                list.appendChild(draggable);
+            } else {
+                list.insertBefore(draggable, afterElement);
+            }
+        }
+    });
+});
+
+function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll('.task-card:not(.dragging)')];
+
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+        
+        if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child };
+        } else {
+            return closest;
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
+
+const dateInput = document.getElementById('task-date');
+if (dateInput) {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const todayLocal = `${year}-${month}-${day}`;
+    
+    dateInput.setAttribute('min', todayLocal);
+}
